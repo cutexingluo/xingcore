@@ -9,26 +9,27 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>xingcore-base</artifactId>
+    <artifactId>xingcore-common-all</artifactId>
 
-    <description>
-        xingcore-base, 基础包，包含各种接口，枚举类等，不含任何实体类，做公用声明
-    </description>
+    <description>xingcore 是一个基于Java的轻量级工具库，提高开发效率，提供规范，含各种工具封装</description>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-
-        <!-- versions -->
-
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.realityforge.org.jetbrains.annotations</groupId>
-            <artifactId>org.jetbrains.annotations</artifactId>
-            <version>${jetbrains.annotations.version}</version>
+            <groupId>top.cutexingluo.core</groupId>
+            <artifactId>xingcore-base-lib</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>top.cutexingluo.core</groupId>
+            <artifactId>xingcore-base-extra</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
+
 
 </project>

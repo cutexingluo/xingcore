@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>xingcore-common</artifactId>
+    <artifactId>xingcore-mini</artifactId>
 
     <description>xingcore 是一个基于Java的轻量级工具库，提高开发效率，提供规范，含各种工具封装</description>
 
@@ -25,16 +25,17 @@
             <version>${project.parent.version}</version>
             <exclusions>
                 <exclusion>
+                    <groupId>top.cutexingluo.core</groupId>
+                    <artifactId>xingcore-base-extra</artifactId>
+                </exclusion>
+
+                <exclusion>
                     <groupId>org.projectlombok</groupId>
                     <artifactId>lombok</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.realityforge.org.jetbrains.annotations</groupId>
                     <artifactId>org.jetbrains.annotations</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>cn.hutool</groupId>
-                    <artifactId>hutool-core</artifactId>
                 </exclusion>
 
                 <exclusion>
