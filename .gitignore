@@ -42,7 +42,7 @@ build/
 # BlueJ files
 *.ctxt
 
-# Mobile Tools for Java (J2ME)
+# Mobile core for Java (J2ME)
 .mtj.tmp/
 
 # Package Files #
