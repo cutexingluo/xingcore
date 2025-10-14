@@ -5,19 +5,49 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>top.cutexingluo.core</groupId>
-    <artifactId>xingcore</artifactId>
-    <version>1.0.0</version>
+    <artifactId>xingcore-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>1.2.0</version>
+    <name>xingcore</name>
+
+    <description>xingcore 是一个基于Java的轻量级工具库，提高开发效率，提供规范，含各种工具封装</description>
+
+    <modules>
+        <!--  基础三小包      -->
+        <module>xingcore-base</module>
+        <module>xingcore-base-impl</module>
+        <module>xingcore-base-lib</module>
+
+        <!--  额外包      -->
+        <module>xingcore-base-extra</module>
+
+        <!-- 依赖       -->
+        <module>xingcore-bom</module>
+
+        <module>xingcore-mini</module>
+        <module>xingcore-mini-all</module>
+        <module>xingcore-common</module>
+        <module>xingcore-common-all</module>
+    </modules>
+
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
 
+        <githubUrl>https://github.com/SangonomiyaKokomi/xingcore</githubUrl>
         <projectUrl>https://gitee.com/SangonomiyaKokomi/xingcore.git</projectUrl>
         <releaseId>release</releaseId>
         <compile.version>8</compile.version>
 
         <!--        versions   -->
 
+
+        <lombok.version>1.18.30</lombok.version>
+        <jetbrains.annotations.version>1.7.0</jetbrains.annotations.version>
+
+        <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
+        <jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>
 
 
     </properties>
@@ -35,7 +65,7 @@
     </developers>
 
     <!--以下部分内容不需要修改，直接复制咱贴即可-->
-    <url>${projectUrl}</url>
+    <url>${githubUrl}</url>
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
