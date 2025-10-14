@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>xingcore-base-extra</artifactId>
+    <name>${project.artifactId}</name>
 
     <description>
         xingcore-base-extra, 扩展包(依赖xingcore-base-lib)，包含各种扩展类，不常用类，以及不稳定工具（未来常变化）

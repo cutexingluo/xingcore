@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>xingcore-base-lib</artifactId>
+    <name>${project.artifactId}</name>
 
     <description>
         xingcore-base-lib, 基础工具包(依赖xingcore-base-impl)，包含各种常用工具类
