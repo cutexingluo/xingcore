@@ -1,6 +1,7 @@
 package top.cutexingluo.core.utils.se.algo.cpp.graph.base;
 
-import top.cutexingluo.core.utils.se.algo.cpp.graph.BaseGraph;
+
+import top.cutexingluo.core.utils.se.algo.graph.BaseGraph;
 
 /**
  * 图基本数据

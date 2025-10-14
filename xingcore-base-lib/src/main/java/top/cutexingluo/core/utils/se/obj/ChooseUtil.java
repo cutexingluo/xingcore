@@ -1,6 +1,6 @@
 package top.cutexingluo.core.utils.se.obj;
 
-import cn.hutool.core.util.StrUtil;
+import top.cutexingluo.core.utils.se.character.StrCoreUtil;
 
 import java.util.Objects;
 
@@ -84,7 +84,7 @@ public class ChooseUtil {
      * @return 选择的值
      */
     public static String checkBlankOverride(String originalValue, String overrideValue) {
-        return StrUtil.isBlank(originalValue) && StrUtil.isNotBlank(overrideValue) ? overrideValue : originalValue;
+        return StrCoreUtil.isBlank(originalValue) && StrCoreUtil.isNotBlank(overrideValue) ? overrideValue : originalValue;
     }
 
 

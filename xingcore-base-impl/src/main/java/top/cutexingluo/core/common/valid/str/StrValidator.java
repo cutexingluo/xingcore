@@ -1,10 +1,11 @@
 package top.cutexingluo.core.common.valid.str;
 
-import cn.hutool.core.util.ReUtil;
-import cn.hutool.core.util.StrUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import top.cutexingluo.core.common.valid.Validator;
+import top.cutexingluo.core.utils.se.character.StrCoreUtil;
+
+import java.util.regex.Pattern;
 
 /**
  * String 检验器
@@ -30,7 +31,7 @@ public class StrValidator implements Validator<String> {
         } else {
 
             // 1.非空判断
-            if (statusConfig.notBlankIfPresent && StrUtil.isBlank(value)) { // 如果是空字符串，则不进行后续的匹配
+            if (statusConfig.notBlankIfPresent && StrCoreUtil.isBlank(value)) { // 如果是空字符串，则不进行后续的匹配
                 return false;
             }
 
@@ -47,7 +48,9 @@ public class StrValidator implements Validator<String> {
             if (statusConfig.anyReg != null && statusConfig.anyReg.length > 0) {
                 conditionCount++;
                 for (String str : statusConfig.anyReg) {
-                    if (ReUtil.isMatch(str, value)) {
+                    if(str == null || str.isEmpty())continue;
+                    final Pattern pattern = Pattern.compile(str, Pattern.DOTALL);
+                    if (pattern.matcher(value).matches()) {
                         return true;
                     }
                 }

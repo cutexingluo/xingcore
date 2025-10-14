@@ -3,7 +3,7 @@ package top.cutexingluo.core.common.valid.num.floatstatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import top.cutexingluo.core.common.valid.Validator;
-import top.cutexingluo.core.utils.se.algo.cpp.math.XTMath;
+import top.cutexingluo.core.utils.se.algo.math.XTMathCore;
 
 /**
  * Float 检验器
@@ -38,16 +38,16 @@ public class FloatValidator implements Validator<Float> {
             }
             // 2.大小限制
             if (statusConfig.limit) {
-                float valueUp = XTMath.getUpValue(value, statusConfig.eps);
-                float valueDown = XTMath.getDownValue(value, statusConfig.eps);
+                float valueUp = XTMathCore.getUpValue(value, statusConfig.eps);
+                float valueDown = XTMathCore.getDownValue(value, statusConfig.eps);
                 if (valueUp < statusConfig.min || valueDown > statusConfig.max) {
                     return false;
                 }
                 if (statusConfig.range != null && statusConfig.range.length > 0) { //       区间限制
                     for (int i = 0; i < statusConfig.range.length; i++) {
                         if (statusConfig.range[i] != null) {
-                            if (valueUp >= XTMath.getDownValue(statusConfig.range[i].getMin(), statusConfig.eps) &&
-                                    valueDown <= XTMath.getUpValue(statusConfig.range[i].getMax(), statusConfig.eps)) {
+                            if (valueUp >= XTMathCore.getDownValue(statusConfig.range[i].getMin(), statusConfig.eps) &&
+                                    valueDown <= XTMathCore.getUpValue(statusConfig.range[i].getMax(), statusConfig.eps)) {
                                 return true; // 在区间内通过
                             }
                         }

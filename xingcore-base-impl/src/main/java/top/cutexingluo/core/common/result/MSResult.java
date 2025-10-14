@@ -10,6 +10,7 @@ import top.cutexingluo.core.common.base.IRName;
 import top.cutexingluo.core.common.base.IResult;
 import top.cutexingluo.core.common.base.IResultData;
 import top.cutexingluo.core.common.base.StrCode;
+import top.cutexingluo.core.designtools.method.ClassMaker;
 
 import java.util.List;
 import java.util.Map;
@@ -309,25 +310,20 @@ public class MSResult<T> extends CommonResult<Integer, T> implements StrCode {
 
     /**
      * 转到自定义类型
-     * <p>fix bug</p>
      *
-     * @param clazz 自定义类型，需继承自IResult
+     * @param clazz 自定义类型，需继承自IResult, 并带IResult 构造参数
      * @return {@link P}
-     * @updateFrom 1.0.3
      */
     public <P extends IResult<Integer, O>, O> P toCollect(Class<P> clazz) {
-        return ClassMaker.castTarClass(this, clazz);
+        P p = ClassMaker.castClass(this, clazz);
+        if (p != null) return p;
+        if(IResult.class.isAssignableFrom(clazz)){
+            ClassMaker<P> maker = new ClassMaker<>(clazz);
+            return maker.newInstanceNoExc(new Class[]{IResult.class},new Object[]{this});
+        }
+        return null;
     }
 
-    /**
-     * 复制到自定义类型
-     *
-     * @param clazz 自定义类型，需继承自IResult
-     * @return {@link P}
-     */
-    public <P extends IResult<Integer, O>, O> P toCollectByCopy(Class<P> clazz) {
-        return BeanUtil.copyProperties(this, clazz);
-    }
 
 
 }

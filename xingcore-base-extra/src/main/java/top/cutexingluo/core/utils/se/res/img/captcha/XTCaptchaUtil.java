@@ -1,6 +1,5 @@
 package top.cutexingluo.core.utils.se.res.img.captcha;
 
-import cn.hutool.captcha.CaptchaUtil;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -18,7 +17,7 @@ import java.util.Base64;
  * @date 2024/1/24 15:07
  * @since 1.0.4
  */
-public class XTCaptchaUtil extends CaptchaUtil {
+public class XTCaptchaUtil {
 
 
     /**

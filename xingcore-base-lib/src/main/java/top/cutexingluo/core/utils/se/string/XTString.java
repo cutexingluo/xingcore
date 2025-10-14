@@ -1,8 +1,8 @@
 package top.cutexingluo.core.utils.se.string;
 
-import cn.hutool.core.util.StrUtil;
 import org.jetbrains.annotations.NotNull;
-import top.cutexingluo.core.utils.se.character.XTStrUtil;
+import top.cutexingluo.core.utils.se.algo.cpp.string.XTStringAlgo;
+import top.cutexingluo.core.utils.se.character.StrCoreUtil;
 
 import java.util.function.Function;
 
@@ -59,22 +59,22 @@ public class XTString extends CPPString implements BaseString {
 
     @Override
     public boolean isEmpty() {
-        return StrUtil.isEmpty(this.string);
+        return StrCoreUtil.isEmpty(this.string);
     }
 
     @Override
     public boolean isBlank() {
-        return StrUtil.isBlank(this.string);
+        return StrCoreUtil.isBlank(this.string);
     }
 
     @Override
     public boolean isNotEmpty() {
-        return StrUtil.isNotEmpty(this.string);
+        return StrCoreUtil.isNotEmpty(this.string);
     }
 
     @Override
     public boolean isNotBlank() {
-        return StrUtil.isNotBlank(this.string);
+        return StrCoreUtil.isNotBlank(this.string);
     }
 
 
@@ -84,13 +84,13 @@ public class XTString extends CPPString implements BaseString {
      */
     protected int indexOfNoPreSymbol(@NotNull StringBuilder string, @NotNull String pattern, int fromIndex, char symbol, boolean deleteSymbol, boolean useJdk) {
         if (symbol == '\0') {
-            return useJdk ? string.indexOf(pattern, fromIndex) : XTStrUtil.find(string.toString(), fromIndex, pattern);
+            return useJdk ? string.indexOf(pattern, fromIndex) : XTStringAlgo.find(string.toString(), fromIndex, pattern);
         } else {
             for (int index; fromIndex < string.length(); ) {
                 if (useJdk) {
                     index = string.indexOf(pattern, fromIndex);
                 } else {
-                    index = XTStrUtil.find(string.toString(), fromIndex, pattern);
+                    index = XTStringAlgo.find(string.toString(), fromIndex, pattern);
                 }
                 if (index == -1) return index; // not find
                 if (index == 0 || (index > 0 && string.charAt(index - 1) != symbol)) { // find

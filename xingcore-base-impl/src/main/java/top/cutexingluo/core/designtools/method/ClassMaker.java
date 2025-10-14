@@ -66,6 +66,37 @@ public class ClassMaker<T> {
     }
 
     /**
+     * 转化为目标类
+     * <p>会先判定是否是超类，如果可以转化则直接转化，否则返回 null</p>
+     *
+     * @param obj   对象
+     * @param clazz 类型
+     * @return 转化后的对象
+     * @since 1.2.0
+     */
+    public static <T, O> T castClass(O obj, Class<T> clazz) {
+        if (obj == null) return null;
+        if (clazz.isAssignableFrom(obj.getClass())) return (T) obj;
+        return null;
+    }
+
+
+    /**
+     * 转化为目标类
+     * <p>会先判定是否是超类，如果可以转化则直接转化，否则返回 null</p>
+     *
+     * @param obj 对象
+     * @return 转化后的对象
+     * @since 1.2.0
+     */
+    public <O> T castClass(O obj) {
+        return castClass(obj, clazz);
+    }
+
+
+
+
+    /**
      * 生成对象
      */
     public static <V> V newInstance(Constructor<V> constructor, Object... initargs) {
@@ -140,6 +171,24 @@ public class ClassMaker<T> {
         try {
             return clazz.getConstructor(parameterTypes);
         } catch (NoSuchMethodException ignored) {
+        }
+        return null;
+    }
+
+    public T newInstance(Class<?>[] parameterTypes, Object[] initargs) {
+        try {
+            return clazz.getConstructor(parameterTypes).newInstance(initargs);
+        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+            if (exceptionHandler != null) exceptionHandler.accept(e);
+            else if (printTrace) e.printStackTrace();
+        }
+        return null;
+    }
+
+    public T newInstanceNoExc(Class<?>[] parameterTypes, Object[] initargs) {
+        try {
+            return clazz.getConstructor(parameterTypes).newInstance(initargs);
+        } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException ignored) {
         }
         return null;
     }
