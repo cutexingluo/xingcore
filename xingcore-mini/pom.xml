@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>xingcore-mini</artifactId>
+    <name>${project.artifactId}</name>
 
     <description>xingcore 是一个基于Java的轻量级工具库，提高开发效率，提供规范，含各种工具封装</description>
 

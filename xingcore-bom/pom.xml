@@ -10,6 +10,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>xingcore-bom</artifactId>
+    <name>${project.artifactId}</name>
+
     <description>
         xingcore-bom, bom包，用于管理依赖版本
     </description>

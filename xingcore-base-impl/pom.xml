@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>xingcore-base-impl</artifactId>
+    <name>${project.artifactId}</name>
 
     <description>
         xingcore-base-impl,基础实现包(依赖xingcore-base)，包含各种接口的实现类，以及各种常用基础实体类、处理类
