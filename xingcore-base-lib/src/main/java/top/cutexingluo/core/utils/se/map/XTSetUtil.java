@@ -18,7 +18,7 @@ public class XTSetUtil {
 
     @SafeVarargs
     public static <E> HashSet<E> hashSet(E... items) {
-        return items == null ? null : new HashSet(Arrays.asList(items));
+        return items == null ? null : new HashSet<>(Arrays.asList(items));
     }
 
     /**
