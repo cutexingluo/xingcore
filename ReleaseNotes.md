@@ -1,20 +1,8 @@
-@Author XingTian
-@Since 2023-9-26
+##  :memo:更新公告
 
-@Version v1.2.0
-@Update 2025-10-13
+**2025-10-14 v1.2.0**
 
-
-推荐使用版本
-xingtool v1.0.1, v1.0.4, v1.0.5
-xingtools v1.1.3, v1.1.4, v1.1.5, v1.1.6, v1.1.7
-xingcore v1.2.0
-xingtools v1.2.0
-极力推荐使用最新版 v1.2.0
-
-
-更新公告
-2025-10-13 v1.2.0
+```txt
 中版本更新，拆分 xingtools.xing-core 为 xingcore，成为公共库
 
 更改部分
@@ -30,11 +18,18 @@ xingcore-mini-all:含基础三小包，并附带常用依赖
 xingcore-common:含全部四包，并无任何其他依赖
 xingcore-common-all:含全部四包，并附带常用依赖
 
+移除部分
+移除系列不常用注解，方法，类等
 新增部分
 新增 IAction 、IPlugin 等接口，适配未来组件插件化开发
+```
 
+**2025-7-26  v1.1.7 **
 
-2025-5-6 v1.1.7
+```txt
+版本更新说明
+当前版本逐渐趋于稳定，新增和改动内容少，逐渐可放心使用。
+
 更改部分
 1.移除 JavaVersion.EIGHT 防止报错
 2.状态节点 StatusNode 面向接口 Collection
@@ -45,9 +40,15 @@ xingcore-common-all:含全部四包，并附带常用依赖
 1.新增 EmptyChecker 等系列接口
 2.新增 IPageDetail 接口，及其系列实现接口
 3.新增链式调用接口 TaskChain, TaskNode 及实现类
-4.新增IValueSource 接口, 拥有setValue方法
+4.新增 IValueSource 接口, 拥有setValue方法
+```
 
-2024-10-18 v1.1.6
+**2024-11-22  v1.1.6**
+
+```txt
+版本更新说明
+当前版本新增和修改了很多东西。比如对 Map.Entry 及各种 Node 节点类的支持，并新增 B树 和 B+ 树作为数据结构，增强了工具包的可用性。本次也对编码哈希加密等算法进行了重构，开始了面向接口使用，更加方便管理多种算法。相应的迭代器，比较器都进行了增强。二分查找也单独提取出来。重要的是现在能够同时支持 spring-cloud-starter-security, spring-cloud-starter-oauth2, spring-security-oauth2-authorization-server 三种框架的组合和兼容。
+
 更改部分
 1.*重构迭代器，比较器，使之更通用，更健壮
 2.提取 XTMath 的二分查找 为 XTBinarySearch, 支持多种二分查找，类似 c++ lower_bound, upper_bound
@@ -61,10 +62,14 @@ xingcore-common-all:含全部四包，并附带常用依赖
 6.* 新增 BTree (B 树) 和 BPlusTree (B+ 树) 数据结构，支持插入，删除，查找，遍历等操作，使用新的迭代器速度更快
 7.新增 MapEntry 实体类兼容 Map.Entry 接口和其他实体类
 8.*新增对 spring-security-oauth2-authorization-server 的 OAuth2 的管理接口，以及各种实现类，后续也会持续跟进更新
+```
 
+**2024-9-29  v1.1.5**
 
+```txt
+版本更新说明
+当前版本主要是为了灵活性扩展，更改了 返回数据实体类及工具类的实现，也更改了 XTCallable 和新增 XTSupplier ，来解决令人头疼的 Supplier和Callable两个接口的统一问题。
 
-2024-9-27 ~ 2024-9-29   v1.1.5
 更改部分
 1.* 重构 IResult 实现类四大类，更改里面的所有 success 和 error 的默认值,  true 和 false 统一改为 null , 不带值
 2.* 重构 ResultUtil 的 大部分方法，为适应不同情况，可以自定义策略等
@@ -74,10 +79,11 @@ xingcore-common-all:含全部四包，并附带常用依赖
 新增部分
 1.新增 XTSupplier 作为 XTCallable 的补充，使其更灵活，扩展性好。从XTCallable 提出公共静态方法 XTAround , 很多方法优先使用该类
 2.新增接口 IName, IRName ,提供getName 方法, 并使Constants 和 HttpStatus 实现该接口, IResult 四大实现类支持配置msg默认英文名name
+```
 
+**2024-9-14  v1.1.4**
 
-2024-8-16 ~ 2024-9-14  v1.1.4
-
+```txt
 更改部分
 1.恢复 mybatis-plus 插件自动配置, 默认关闭 xt-lock-aop
 2.日志包ILogProvider从静态改为面向对象
@@ -92,9 +98,11 @@ xingcore-common-all:含全部四包，并附带常用依赖
 2.新增Entry类代替hutool的Pair类，更改新增Entry, Pair, TupleEntry, TuplePair 等适应不同情况的二元组, 部分类开始继承Entry而不是hutool的Pair
 3.*新增链式接口，过滤器链接口及其实现类，核心类为 FilterChain (CompositeFilterChainFactory) , StreamChain , BuilderChain , BuilderMapChain可分别模拟过滤器链Filter, 流式Stream的调用方式 和 建造者链, 建造者扩展链, 加快开发
 4.*新添 ModuleAdapter 及其实现类，针对 JacksonSerializer 进行了增强，支持更多类似 FastJson 功能，并提供配置全局序列化器，RYRedisCache 支持从容器获取序列化器，容器bean名称分别为 jacksonSerializer 和 redisJacksonSerializer
+```
 
+**2024-8-12  v1.1.3**
 
-2024-8-12 v1.1.3
+```txt
 bug 修复
 1.由于源码包只识别签名，所以在支持 jdk17 的众多方法会抛出 NoSuchMethodError 错误，故 jdk17 版本不推荐使用 v1.1.2 版本，现对该版本进行紧急修复。
 
@@ -104,15 +112,17 @@ bug 修复
 新增部分
 1.新增HttpServletRequestAdapter和 HttpServletResponseAdapter 针对 HttpServlet 系列的适配方法，并替换之前的长链调用，以便通过对包的支持来达到对jdk支持的目的。
 2.新增 HttpServletRequestDataAdapter 和 HttpServletResponseDataAdapter 作为上面两个接口的实现，通过导入不同 jdk 包或者自行实现的方式 满足工具方法的需求。
+```
 
+**2024-8-8  v1.1.2**
 
+```txt
+版本使用攻略：jdk17 禁止使用含 HttpServletRequest 参数的大部分方法。该版本不推荐使用，请移步下一版本。
 
-2024-8-8  v1.1.2
 bug 修复
 1.由于未导入 spring-boot-starter-aop ，故启用 @EnableXingToolsServer 时使用 某个 aop 报错，目前将所有 aop 关闭；现在不使用 aop 不导入 aop 包，依旧能运行服务。
 在v1.1.1版本需要配置  xingtools.ext-transaction-anno.enabled=false # v1.1.1 版本需要关闭。
 2.修复 IntStatus 等参数校验注解未初始化的问题，以及数字匹配 matchNum 绝对匹配放行的问题。
-
 
 更改部分
 1.将 pkg-jdk8 和 pkg-jdk17 部分代码移除或移出到mvc包和cloud等其他包下，只做javax 和 jakarta 包的兼容，该包只依赖 core包。依赖关系更新。
@@ -123,10 +133,14 @@ bug 修复
 例如：AuthToken, AuthAccessToken, AuthTokenExtractor, AuthTokenGenerator 等作为新的框架，和新的 XTAuthenticationBuilder 工具建造类对授权执行链的支持。
 2.新增 HttpStatus 作为 Constants 的另一种实现形式。并对 Result 等一系列返回封装类添加对应方法。
 3.新增系列集合类对 short 和 float 的支持，并新增 @ShortStatus 和 @FloatStatus 等参数校验注解。
+```
 
+**2024-7-17  v1.1.1**
 
-2024-7-10 ~ 2024-7-17  v1.1.1
-中版本更新，为了保证灵活性。更改工具 xingtool -> xingtools 。
+```txt
+版本使用攻略：如果没有导入spring-boot-starter-aop包并且开启@EnableXingToolsServer，需要配置文件配置 xingtools.ext-transaction-anno.enabled=false
+
+中版本更新，为了保证灵活性。更改工具名 xingtool -> xingtools 。
 更改部分
 1.分离为多个包，例如分离core 包和 log 大包，保证 log 大包能够使用
 2.部分强耦合方法被移除，例如移出 XTArrayUtil 的 logPrintln 等方法
@@ -143,10 +157,11 @@ bug 修复
 (为保证移植性，javax包减少使用，无法去掉则移植到 pkg-jdk8 包)
 大包分为许多小包，可以按需依赖。
 后续版本将 pkg 包降低其对 其他包依赖性，提高扩展性。
+```
 
+**2024-7-7  v1.0.5**
 
-
-2024-4-8 ~ 2024-7-7  v1.0.5
+```txt
 更改部分
 1.允许 OptData 直接接受 null 值
 2. RedisLockUtil 更改包名为 redis
@@ -159,11 +174,13 @@ bug 修复
 
 支持部分 SpringBoot3
 新增使用文档
+```
 
-2023-12-29 ~ 2024-3-27  v1.0.4
+**2024-3-27  v1.0.4**
 
+```
 bug修复
-1.紧急修复XTCallable 的 getSupplier 和 canRunTask 问题，并修复逻辑。
+1.紧急修复 XTCallable 的 getSupplier 和 canRunTask 问题，并修复逻辑。
 2.紧急修复 XTStrUtil findFirstOf错误调用自身的问题。 1.0.2-1.0.3 两个版本不要使用该方法。
 3.修复单 pick 问题, 解决并发注解 @MainThread @SonThread 事务问题, 修复 TreeUtil 树转列表的问题
 4.修复 ResultUtil 对 R类 的支持问题
@@ -182,34 +199,41 @@ bug修复
 4.新增 @WebLog注解 和 WebHandler 工具类，用于自定义策略日志打印，可以取代 @MethodLog 和 @XTSystemLog , 匹配, 模式串用法更灵活。
 5.新增 OptBundle 类 用于执行链操作 , 和 OptionalResult 用于扩展 Optional 类。
 6.新增 kotlin 依赖 临时支持 kotlin 。
+```
 
+**2023-12-25 v1.0.3**
 
-
-2023-10-24 ~ 12-25  v1.0.3
+```txt
+版本使用攻略：禁止使用 XTStrUtil.findFirstOf，XTCallable的 getSupplier 和 canRunTask，TreeUtil.flatListBfs 等所有树转列表方法
 
 bug修复
-1.修复了 AccessLimitUtil.limitIP 加载 Ipdb 错误 的bug
+1. 修复了 AccessLimitUtil.limitIP 加载 Ipdb 错误 的bug
+
 更改部分
-1.修改了XTCompletionService实现，以及ThreadLocalHelper文件位置
-2.所有web 拦截类 从 Result 改为返回 IResult 接口，并且添加 GlobalResultFactory 接口用于全局返回结果，使用时需要注册到容器。
+1. 修改了XTCompletionService实现，以及ThreadLocalHelper文件位置
+2. 所有web 拦截类 从 Result 改为返回 IResult 接口，并且添加 GlobalResultFactory 接口用于全局返回结果，使用时需要注册到容器。
+
 新增部分
-1.新增top.cutexingluo.tools.utils.se.algo.cpp包，里面包含各种算法（有些未测试），例如数论，几何，数据结构，图论，字符串等
-2.新增 BoolUtil  用于使 java 适配 c++性质。
-3.新增XTArrayUtil一些方法，用于移动数组元素，新增 XTSetUtil 的 Set 工具类。
-4.新增ClassMaker类，用于转化和反射，可以配合XTObjUtil。
-5.增加了 CommonResult 类，用于返回通用结果, 四大返回类重新继承了该类。
-6.新增红黑树 RBTree，迭代器默认中序遍历，即默认升序排序。属性全为protected，方便子类继承。常规推荐使用 TreeMap
-7.新增各种迭代器用于适配多种情况。可自行继承使用。
-8.新增启用 server 的 banner 和 cloud server 的 banner
+1. 新增top.cutexingluo.tools.utils.se.algo.cpp包，里面包含各种算法（有些未测试），例如数论，几何，数据结构，图论，字符串等
+2. 新增 BoolUtil  用于使 java 适配 c++性质。
+3. 新增XTArrayUtil一些方法，用于移动数组元素，新增 XTSetUtil 的 Set 工具类。
+4. 新增ClassMaker类，用于转化和反射，可以配合XTObjUtil。
+5. 增加了 CommonResult 类，用于返回通用结果, 四大返回类重新继承了该类。
+6. 新增红黑树 RBTree，迭代器默认中序遍历，即默认升序排序。属性全为protected，方便子类继承。常规推荐使用 TreeMap
+7. 新增各种迭代器用于适配多种情况。可自行继承使用。
+8. 新增启用 server 的 banner 和 cloud server 的 banner
+```
 
+**2023-10-21 v1.0.2**
 
+```txt
+版本使用攻略：禁止使用XTStrUtil.findFirstOf，AccessLimitUtil.limitIP
 
-2023-10-1 ~ 10-16  v1.0.2
-1.添加了Supplier接口
-2.添加多线程注解AOP @MainThread @SonThread
+1. 添加了 Supplier 接口,。与之对应各种适配类的调整。
+2. 添加多线程注解AOP @MainThread @SonThread
 3. 调整 XTAsync 类 , 并且添加 ThreadHelper接口，更快速使用。
 4. 添加 XTString 工具类，可以通过 C++ 方法名称的方式使用。
-5.重构代码（位置和代码），减小 Bean 数量，以下为 v1.0.2 重构更新日志：
+5. 重构代码（位置和代码）。以下为 v1.0.2 重构更新日志：
 
 1.移除 XTExceptionAop 两个静态方法
 2.添加 BaseAspectAroundHandler 接口默认方法
@@ -222,31 +246,23 @@ bug修复
 9.为 RedisConfig , SpringSecurity Oauth2 添加用法注释
 10.XTCallOtherUtil 更名为 XTCodeInteropUtil，关于生成其他语言代码的工具类
 11.添加RabbitMQ系列初始工具类, 以及用法Test类, 可以不使用，没有太多优化的地方。
+```
 
-2023-9-26 v1.0.1
+**2023-9-26 v1.0.1**
 正式版发布，中央仓库 ,  依赖最低版本不能低于 v1.0.1
 
-2023-9-26 v1.0.0
-测试仓库版
+```txt
+1. 含有基础日志、事务、线程、异常等AOP，需要通过配置文件开启。
+2. 包含基础包 Callable , Runnable 等系列封装的函数式接口及其实现类，如 XTRunCallUtil 工具类。
+3. 含有系列注解，如 StrStatus,  IntStatus 等注解，可以对类属性进行验证。
+4. 含有MVC 封装返回值的封装接口及其四个实现类，可以应对任何 code , msg , data 三件套的情况。
+5. 含有传统设计方法封装工具类，包含 XTBuilder, 反射, 多线程, 锁等工具类。
+6. 含有拦截器封装的工具类，例如 Oauth2 Authentication 的过滤 ，IP 限流 等工具类。
+7. 支持 SpringCloud Oauth2 的简化配置，例如 @EnableXTCloudSecurity 开启 JWT 自动导入Bean。
+8. 含有各配置的开启，例如 MybatisPlus 分页插件和 Redis 的配置 及其 四个以上的Redis工具类和其他工具类。
+9. 对RuoYi、ican工具类的大部分支持，对 hutool 工具包默认导入以及扩展。
+10. 对一些其他语言的扩展工具类支持，例如 JS 系列的方法名称,, 以及其他语言的操作，生成。
+11. 对加密解密的各种封装，以及对token解析的封装，但还是建议使用 hutool工具。
+12. 对许多工具类的扩展，包含字符，文件，IO，map等，以及各种基本类的对应工具类。
+```
 
-2023-4-6 beta - v1.2.1
-整理重构代码，整理返回类。
-
-2023-4-6 beta - v1.2.0
-整理重构代码，依赖处理。
-
-2023-2-3 beta - v1.1.0
-整合工具类为springboot包
-取消XTUtils类，JUC和锁 默认包过时
-
-2022-11-26 beta - v1.0.3
-增加JUC集合,本地方法类
-
-2022-11-14 beta - v1.0.2
-增加aop注解，XTFile工具类
-
-2022-10-19 beta - v1.0.1
-更新设计工具等工具类
-
-2022-10-18 beta - v1.0.0
-默认XTUtils工具和异常配置类

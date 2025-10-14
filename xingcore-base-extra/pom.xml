@@ -21,7 +21,7 @@
         <maven.compiler.target>8</maven.compiler.target>
 
         <!--        versions -->
-        <hutool.version>5.8.36</hutool.version>
+        <hutool.version>5.8.40</hutool.version>
         <jjwt.version>0.9.1</jjwt.version>
         <java-jwt.version>4.4.0</java-jwt.version>
         <kaptcha.version>2.3.3</kaptcha.version>
