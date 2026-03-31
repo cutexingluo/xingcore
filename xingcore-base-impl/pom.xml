@@ -5,7 +5,7 @@
     <parent>
         <artifactId>xingcore-parent</artifactId>
         <groupId>top.cutexingluo.core</groupId>
-        <version>1.2.0</version>
+        <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -21,6 +21,7 @@
         <maven.compiler.target>8</maven.compiler.target>
 
         <!--   versions     -->
+        <slf4j.version>1.7.36</slf4j.version>
         <bcprov-jdk15on.version>1.70</bcprov-jdk15on.version>
     </properties>
 
@@ -39,6 +40,14 @@
             <scope>provided</scope>
         </dependency>
 
+        <!--   slf4j     -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
 
         <!--        security  -->
         <!--     bcprov - ecc   -->
@@ -49,7 +58,6 @@
             <optional>true</optional>
         </dependency>
     </dependencies>
-
 
 
 </project>
