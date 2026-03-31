@@ -1,19 +1,23 @@
 @Author XingTian
 @Since 2023-9-26
 
-@Version v1.2.0
-@Update 2025-10-13
+@Version v1.2.1
+@Update 2026.3.31
 
 
 推荐使用版本
 xingtool v1.0.1, v1.0.4, v1.0.5
 xingtools v1.1.3, v1.1.4, v1.1.5, v1.1.6, v1.1.7
-xingcore v1.2.0
-xingtools v1.2.0
-极力推荐使用最新版 v1.2.0
+xingcore v1.2.0, v1.2.1
+xingtools(滞后性) v1.2.0, v1.2.1
+极力推荐使用最新版 xingcore-v1.2.1
 
 
 更新公告
+2026-3-31 v1.2.1
+1.xingtools-core 的异常处理器（ExceptionDelegate 等）移植进 xingcore
+2.所有依赖版本更新，例如 jackson 已升到 2.20.1
+
 2025-10-13 v1.2.0
 中版本更新，拆分 xingtools.xing-core 为 xingcore，成为公共库
 

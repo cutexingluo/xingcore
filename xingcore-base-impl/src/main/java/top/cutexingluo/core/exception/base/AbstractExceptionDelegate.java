@@ -1,5 +1,6 @@
 package top.cutexingluo.core.exception.base;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -108,6 +109,31 @@ public abstract class AbstractExceptionDelegate<T extends Throwable> implements 
             }
         }
         return ret;
+    }
+
+
+    /**
+     * 处理异常，所有处理全部执行，最后返回所有处理结果
+     *
+     * @param e        异常
+     * @param otherArg 其他参数
+     * @return 处理结果
+     */
+    public List<Object> handleRetainAll(T e, Object otherArg) {
+        List<ExceptionHandler<T>> handlers = exceptionHandlers();
+        if (handlers != null) {
+            List<Object> ret = new ArrayList<>(handlers.size());
+            for (ExceptionHandler<T> handler : handlers) {
+                if (handler != null && handler.support(e)) {
+                    Object o = handler.apply(e, otherArg);
+                    ret.add(o);
+                } else {
+                    ret.add(null);
+                }
+            }
+            return ret;
+        }
+        return null;
     }
 
 }

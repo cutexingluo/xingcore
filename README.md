@@ -2,7 +2,7 @@
 
 ## :book:相关介绍
 
-**xingcore**, XingCore, xinghe，意为“星核”，作为 Xing Java 系列工具库代码精华部分，作为后续 Xing Java工具库的基础、内核、依赖，也是后续 Java工具库的标准、规范。
+**xingcore**, XingCore, xinghe，意为“星核”，作为 Xing Java 系列工具库代码精华部分，作为后续 Xing Java工具库的基础、内核、依赖，也是后续相关 Java工具库的标准、规范。
 
 ### :scroll:简介
 
@@ -32,7 +32,7 @@ Maven 依赖 （全量版本）（会携带 Jackson 等系列包）
 <dependency>
 	<groupId>top.cutexingluo.core</groupId>
 	<artifactId>xingcore-common-all</artifactId>
-	<version>1.2.0</version>
+	<version>1.2.1</version>
 </dependency>
 ```
 
@@ -42,7 +42,7 @@ Maven 依赖（无额外依赖）
 <dependency>
 	<groupId>top.cutexingluo.core</groupId>
 	<artifactId>xingcore-common</artifactId>
-	<version>1.2.0</version>
+	<version>1.2.1</version>
 </dependency>
 ```
 
@@ -56,7 +56,7 @@ Maven 依赖 （全量版本）（会携带 Jackson 等系列包）
 <dependency>
 	<groupId>top.cutexingluo.core</groupId>
 	<artifactId>xingcore-mini-all</artifactId>
-	<version>1.2.0</version>
+	<version>1.2.1</version>
 </dependency>
 ```
 
@@ -66,7 +66,7 @@ Maven 依赖（无额外依赖，最简版本，只含三个包）
 <dependency>
 	<groupId>top.cutexingluo.core</groupId>
 	<artifactId>xingcore-mini</artifactId>
-	<version>1.2.0</version>
+	<version>1.2.1</version>
 </dependency>
 ```
 
@@ -75,8 +75,8 @@ Maven 依赖（无额外依赖，最简版本，只含三个包）
 目前推荐使用的版本如下：
 
 ```txt
-推荐使用最新版 v1.2.0
-xingcore v1.2.0
+推荐使用最新版 v1.2.1
+xingcore v1.2.0, v1.2.1
 ```
 
 xingcore 最低版本不能低于 v1.2.0
@@ -88,7 +88,7 @@ xingcore 最低版本不能低于 v1.2.0
 | xingtools-base      | 基础包，包含各种接口，枚举类等，不含任何实体类，做公用声明   |
 | xingtools-base-impl | 基础实现包(依赖xingcore-base)，包含各种接口的实现类，以及各种常用基础实体类、处理类 |
 | xingtools-base-lib  | 基础工具包(依赖xingcore-base-impl)，包含各种常用工具类       |
-| xingcore-base-extra | 扩展包(依赖xingcore-base-lib)，包含各种扩展类，不常用类，以及不稳定工具（未来常变化） |
+| xingcore-base-extra | 扩展包(依赖xingcore-base-lib)，包含各种扩展类，不常用类，过时类，以及不稳定工具（未来常变化） |
 |                     |                                                              |
 | xingcore-bom        | bom包，用于管理依赖版本                                      |
 |                     |                                                              |
@@ -535,6 +535,28 @@ boolean contains = node.getChildren().contains(EnumPay.ALIPAY);
 System.out.println(contains); // true
 ```
 
+#### 6.异常处理器
+
+可以对异常进行操作，可以实现 ExceptionDelegate 接口，自定义操作
+
+提供了两个默认处理代表
+
+- ExceptionPrintDelegate
+- ExceptionLogDelegate
+
+```java
+// 三个参数分别为：自定义处理器，是否e.printStackTrace(), 是否System.err.println(e)
+ExceptionPrintDelegate<Throwable> delegate = new ExceptionPrintDelegate<>((e, obj) -> {
+    return e.getMessage();
+}, true, true); 
+
+// 处理异常
+// 第一个参数为异常，第二个为任意对象，将会传到上面的表达式中
+Object result = delegate.handle(new NullPointerException("test"), null);
+```
+
+
+
 ### 🔧 注解
 
 #### 1.***参数校验** （@XxxStatus）
@@ -618,7 +640,7 @@ public class AsyncConfig implements AsyncConfigurer, ThreadHelper {
 
 注入该对象即可使用ThreadHelper里面的方法
 
-
+2.声明式，通过注解控制，详见 xingtools
 
 
 
