@@ -7,7 +7,7 @@
     <groupId>top.cutexingluo.core</groupId>
     <artifactId>xingcore-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.2.0</version>
+    <version>${revision}</version>
     <name>xingcore</name>
 
     <description>xingcore 是一个基于Java的轻量级工具库，提高开发效率，提供规范，含各种工具封装</description>
@@ -32,6 +32,9 @@
 
 
     <properties>
+        <revision>1.2.1</revision>
+
+
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
 
@@ -51,7 +54,6 @@
 
 
     </properties>
-
 
 
     <!--填入开发者信息，姓名、邮箱、项目地址-->
@@ -86,7 +88,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.9.0</version>
+                <version>3.14.0</version>
                 <configuration>
                     <source>${compile.version}</source>
                     <target>${compile.version}</target>
@@ -96,7 +98,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.4.2</version>
                 <configuration>
                     <archive>
                         <index>true</index>
@@ -111,6 +113,32 @@
                         </manifestEntries>
                     </archive>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>1.5.0</version>
+                <configuration>
+                    <!-- 把真正解析后的版本写进 .flattened-pom.xml -->
+                    <updatePomFile>true</updatePomFile>
+                    <flattenMode>resolveCiFriendliesOnly</flattenMode>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>flatten-clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

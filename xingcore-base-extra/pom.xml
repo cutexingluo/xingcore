@@ -5,7 +5,7 @@
     <parent>
         <artifactId>xingcore-parent</artifactId>
         <groupId>top.cutexingluo.core</groupId>
-        <version>1.2.0</version>
+        <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -22,11 +22,15 @@
         <maven.compiler.target>8</maven.compiler.target>
 
         <!--        versions -->
-        <hutool.version>5.8.40</hutool.version>
-        <jjwt.version>0.9.1</jjwt.version>
-        <java-jwt.version>4.4.0</java-jwt.version>
+        <!--  使用最新版      -->
+        <hutool.version>5.8.42</hutool.version>
+        <!--        <jjwt.version>0.9.1</jjwt.version>-->
+        <jjwt.version>0.13.0</jjwt.version>
+        <!--        <java-jwt.version>4.4.0</java-jwt.version>-->
+        <java-jwt.version>4.5.1</java-jwt.version>
         <kaptcha.version>2.3.3</kaptcha.version>
-        <jython.version>2.7.3</jython.version>
+        <!--        <jython.version>2.7.3</jython.version>-->
+        <jython.version>2.7.4</jython.version>
     </properties>
 
 

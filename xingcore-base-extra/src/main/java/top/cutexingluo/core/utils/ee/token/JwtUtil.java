@@ -5,13 +5,14 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 import org.jetbrains.annotations.NotNull;
+import top.cutexingluo.core.utils.se.character.UUIDUtils;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64;
 import java.util.Date;
-import java.util.UUID;
 
 
 /**
@@ -40,16 +41,13 @@ public class JwtUtil {
 
     /**
      * 加签算法 (默认 HS256)
+     *
+     * <p>该属性已废弃，算法将由SECRET_KEY 推断</p>
+     * <p> SignatureAlgorithm.HS256</p>
      */
-    public static SignatureAlgorithm SIGNATURE_ALGORITHM = SignatureAlgorithm.HS256;
+    @Deprecated
+    public static SignatureAlgorithm SIGNATURE_ALGORITHM = null;
 
-    /**
-     * 无分隔符 "-" 的UUID
-     */
-    public static String getUUID() {
-        String token = UUID.randomUUID().toString().replaceAll("-", "");
-        return token;
-    }
 
     /**
      * 生成jwt
@@ -57,7 +55,7 @@ public class JwtUtil {
      * @param subject token中要存放的数据（json格式）
      */
     public static String createJWT(String subject) {
-        JwtBuilder builder = getJwtBuilder(subject, null, getUUID());// 设置过期时间
+        JwtBuilder builder = getJwtBuilder(subject, null, UUIDUtils.originSimpleUUID());// 设置过期时间
         return builder.compact();
     }
 
@@ -68,12 +66,12 @@ public class JwtUtil {
      * @param ttlMillis token超时时间
      */
     public static String createJWT(String subject, Long ttlMillis) {
-        JwtBuilder builder = getJwtBuilder(subject, ttlMillis, getUUID());// 设置过期时间
+        JwtBuilder builder = getJwtBuilder(subject, ttlMillis, UUIDUtils.originSimpleUUID());// 设置过期时间
         return builder.compact();
     }
 
     private static JwtBuilder getJwtBuilder(String subject, Long ttlMillis, String uuid) {
-        SignatureAlgorithm signatureAlgorithm = SIGNATURE_ALGORITHM;
+//        SignatureAlgorithm signatureAlgorithm = SIGNATURE_ALGORITHM;
         SecretKey secretKey = SECRET_KEY;
         long nowMillis = System.currentTimeMillis();
         Date now = new Date(nowMillis);
@@ -91,7 +89,12 @@ public class JwtUtil {
             jwtBuilder.setIssuer(ISSUER);     // 签发者
         }
         if (secretKey != null) {
-            jwtBuilder.signWith(signatureAlgorithm, secretKey); //使用算法签名, 第二个参数为秘钥
+            if (SIGNATURE_ALGORITHM != null) {
+                // @deprecated
+                jwtBuilder.signWith(SIGNATURE_ALGORITHM, secretKey); //使用算法签名, 第二个参数为秘钥
+            } else {
+                jwtBuilder.signWith(secretKey);
+            }
         }
         return jwtBuilder;
     }
@@ -122,14 +125,34 @@ public class JwtUtil {
 
 
     /**
+     * 生成秘钥 secretKey 通过 hmac 算法生成
+     *
+     * @since 1.2.1
+     */
+    @NotNull
+    public static SecretKey generalKeyByHmac(String base64JwtKey) {
+        byte[] encodedKey = Base64.getDecoder().decode(base64JwtKey);
+        SecretKey key = Keys.hmacShaKeyFor(encodedKey);
+        return key;
+    }
+
+
+    /**
      * 解析
      */
     public static Claims parseJWT(String jwt) {
         SecretKey secretKey = SECRET_KEY;
+        // old jjwt 解析
+//        return Jwts.parser()
+//                .setSigningKey(secretKey)
+//                .parseClaimsJws(jwt)
+//                .getBody();
+        // new jjwt 解析 0.12.0 以上版本
         return Jwts.parser()
-                .setSigningKey(secretKey)
-                .parseClaimsJws(jwt)
-                .getBody();
+                .verifyWith(secretKey)
+                .build()
+                .parseSignedClaims(jwt)
+                .getPayload();
     }
 
 

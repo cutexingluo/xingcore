@@ -5,18 +5,22 @@
     <parent>
         <artifactId>xingcore-parent</artifactId>
         <groupId>top.cutexingluo.core</groupId>
-        <version>1.2.0</version>
+        <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>xingcore-bom</artifactId>
-    <name>${project.artifactId}</name>
+    <version>${revision}</version>
+    <name>xingcore-bom</name>
+    <packaging>pom</packaging>
 
     <description>
         xingcore-bom, bom包，用于管理依赖版本
     </description>
 
     <properties>
+        <revision>1.2.1</revision>
+
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
@@ -43,26 +47,29 @@
                 <artifactId>xingcore-base-extra</artifactId>
                 <version>${project.parent.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>top.cutexingluo.core</groupId>
+                <artifactId>xingcore-common</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>top.cutexingluo.core</groupId>
+                <artifactId>xingcore-common-all</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>top.cutexingluo.core</groupId>
+                <artifactId>xingcore-mini</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>top.cutexingluo.core</groupId>
+                <artifactId>xingcore-mini-all</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
-    <dependencies>
-        <dependency>
-            <groupId>top.cutexingluo.core</groupId>
-            <artifactId>xingcore-base</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>top.cutexingluo.core</groupId>
-            <artifactId>xingcore-base-impl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>top.cutexingluo.core</groupId>
-            <artifactId>xingcore-base-lib</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>top.cutexingluo.core</groupId>
-            <artifactId>xingcore-base-extra</artifactId>
-        </dependency>
-    </dependencies>
 
 </project>
